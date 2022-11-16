@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
   
   sequelize.define('Character', {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },

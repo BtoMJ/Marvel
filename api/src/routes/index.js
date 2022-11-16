@@ -20,7 +20,7 @@ const getCharactersDBInfo =  () => {
 const getDBInfoSortedZA = async () => {
 
   const dbCharacters = await getCharactersDBInfo()
-  dbCountries.sort((a, b) =>{
+  dbCharacters.sort((a, b) =>{
     if(a.name > b.name){
       return -1
     }
@@ -70,10 +70,10 @@ router.get('/characters', async (req, res) => {
   }
 })
 
-///////////// RENDERIZA LOS PAISES Z -A Ó A - Z ///////////////
 router.get('/characters/:type', async (req, res) => {
 
   const { type } = req.params
+  
   if(type === 'desc'){
     let charactersZA = await getDBInfoSortedZA()
     res.status(200).send(charactersZA)
@@ -86,17 +86,16 @@ router.get('/characters/:type', async (req, res) => {
   
 })
 
-router.get('/characters/:id', async (req, res) =>{
+router.get('/characters/id/:id', async (req, res) =>{
   
-  const { id } = req.query
+  const { id } = req.params
   
-  Character.findOne({
+  await Character.findOne({
     where: {
-      id: id.toUpperCase()
+      id,
     }
   })
   .then((character) => {
-    
     res.status(200).json(character)
   })
   .catch((error) => res.status(404).send(error))
