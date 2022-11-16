@@ -70,7 +70,7 @@ router.get('/characters', async (req, res) => {
   }
 })
 
-router.get('/characters/:type', async (req, res) => {
+router.get('/characters/sort/:type', async (req, res) => {
 
   const { type } = req.params
   
@@ -86,7 +86,7 @@ router.get('/characters/:type', async (req, res) => {
   
 })
 
-router.get('/characters/id/:id', async (req, res) =>{
+router.get('/characters/:id', async (req, res) =>{
   
   const { id } = req.params
   
